@@ -1,0 +1,2 @@
+parameters:
+    app.customers.api.url: '%env(APP_CUSTOMERS_API_URL)%'

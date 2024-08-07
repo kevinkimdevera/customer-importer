@@ -1,0 +1,30 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
+framework:
+    secret: '%env(APP_SECRET)%'
+    #csrf_protection: true
+
+    # Note that the session will be started ONLY if you read or write from it.
+    session: true
+
+    #esi: true
+    #fragments: true
+
+    http_client:
+        scoped_clients:
+            customers.client:
+                base_uri: '%app.customers.api.url%'
+        default_options:
+            headers:
+                Accept: 'application/json'
+                Content-Type: 'application/json'
+
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file
+        http_client:
+            scoped_clients:
+                customers.client:
+                    base_uri: 'http://test-api.example.com'
